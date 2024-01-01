@@ -1,0 +1,37 @@
+# The URL the site will be built for
+title = "qiufeng"
+description = "qiufeng's blog"
+base_url = "https://blog.qiufeng.xyz/"
+build_search_index = false
+generate_feed = true
+compile_sass = true
+minify_html = true
+
+theme = "apollo"
+
+taxonomies = [
+    { name = "categories", feed = true, render = true },
+    { name = "tags", feed = true, render = true },
+]
+
+[markdown]
+highlight_code = true
+highlight_theme = "ayu-dark"
+
+[extra]
+toc = true
+copyright = "qiufeng"
+theme = "auto"
+mathjax = true
+mathjax_dollar_inline_enable = true
+
+socials = [
+    { name = "github", url = "https://github.com/wutongshenqiu", icon = "github" },
+]
+
+menu = [
+    { name = "/posts", url = "/posts", weight = 1 },
+    { name = "/projects", url = "/projects", weight = 2 },
+    { name = "/about", url = "/about", weight = 3 },
+]
+
