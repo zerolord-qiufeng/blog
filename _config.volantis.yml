@@ -1,0 +1,169 @@
+
+navbar:
+  visiable: auto # always, auto
+  logo: # choose [img] or [icon + title]
+    img: volantis-static/media/org.volantis/blog/Logo-NavBar@3x.png # https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/blog/Logo-NavBar@3x.png
+    icon:
+    title:
+  menu:
+    - name: 博客
+      icon: fa-solid fa-rss
+      url: /
+    - name: 分类
+      icon: fa-solid fa-folder-open
+      url: categories/
+    - name: 标签
+      icon: fa-solid fa-tags
+      url: tags/
+    - name: 归档
+      icon: fa-solid fa-archive
+      url: archives/
+    - name: 友链
+      icon: fa-solid fa-link
+      url: friends/
+    - name: 关于
+      icon: fa-solid fa-info-circle
+      url: about/
+  search: Search...   # Search bar placeholder
+############################### Navigation Bar ############################### > end
+
+
+############################### Cover ############################### > start
+cover:
+  title: 'zeroloard & qiufeng'
+  subtitle: ''
+  search: ~~~ # search bar placeholder
+  features:
+    - name: 博客
+      icon: #
+      img: volantis-static/media/twemoji/assets/svg/1f4f0.svg #  https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f4f0.svg
+      url: /archives/
+############################### Cover ############################### > end
+
+############################### Article Layout ############################### > start
+# 文章布局
+article:
+  # 文章列表页面的文章卡片布局方案
+  preview:
+    author: true # true, false
+  # 文章详情页面的文章卡片本体布局方案
+  body:
+    # 文章顶部信息
+    top_meta: [author, category, counter, wordcount, date]
+    # 文章底部信息
+    bottom_meta: [updated, tags, share]
+    footer_widget:
+      related_posts:
+        enable: true
+      copyright:
+        enable: true
+    meta_library:
+      # 默认文章作者（可在 _data/author.yaml 中增加其他作者，并在 front-matter 中设置）
+      # https://volantis.js.org/advanced-settings/#多人协同
+      author:
+        avatar: volantis-static/media/org.volantis/blog/favicon/apple-touch-icon.png # https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/blog/favicon/apple-touch-icon.png
+        name: 'zerolord & qiufeng'
+        url: /
+############################### Article Layout ############################### > end
+
+############################### Sidebar ############################### > start
+sidebar:
+  widget_library:
+    # ---------------------------------------
+    # blogger info widget
+    blogger:
+      social:
+        - icon: fa-solid fa-rss
+          url: /atom.xml
+        - icon: fab fa-github
+          url: https://github.com/zerolord-qiufeng/
+        - icon: fa-solid fa-headphones-alt
+          url: /
+    # ---------------------------------------
+    # webinfo widget
+    webinfo:
+      type:
+        runtime:
+          enable: false
+          data: '2024/01/01'    # 填写建站日期
+          text: '已运行时间：'
+          unit: '天'
+    # ---------------------------------------
+    # Memos widget
+    memos_carousel:
+      url: 'https://blog.qiufeng.xyz/' # 替换城自己的域名，也可以用杜老师的平台托管
+      creatorId: 'qiufeng' # 替换成自己的用户的ID
+      tag: '' # 要展示的内容的标签
+      image: 'fa-solid fa-image' # 图片替换成图标
+      link: 'fa-solid fa-link' # 链接替换成图标
+      placeholder: '说说加载中...' # 占位符
+
+############################### Sidebar ############################### > end
+
+############################### Site Footer ############################### > start
+site_footer:
+  # site source
+  source: https://github.com/zerolord-qiufeng/blog/
+  # site copyright
+  copyright: '[Copyright © since 2024 zerolord-qiufeng](/)'
+############################### Site Footer ############################### > end
+
+############################### Plugins ############################### > start
+plugins:
+  ######## Plugins for Count:
+  # npm i hexo-wordcount
+  wordcount:
+    enable: true
+
+  busuanzi:
+    enable: true
+
+  ######## Plugins for ...
+  # Button Ripple Effect
+  nodewaves:
+    enable: true
+
+  # fontawesome V6:  https://fontawesome.com/docs/web/style/animate
+  # fontawesome animation for fontawesome V5
+  fontawesome_animation:
+    enable: true
+  # Typing Effects
+  comment_typing:
+    enable: true
+
+  # 暗黑模式 darkmode
+  # 开关按钮：在 navbar.menu 中添加：
+  # - name: 暗黑模式 # 可自定义
+  #   icon: fa-solid fa-moon # 可自定义
+  #   toggle: darkmode
+  darkmode:
+    enable: true
+
+  # Artitalk https://artitalk.js.org
+  # 配置过程请参考：https://artitalk.js.org/doc.html
+  # 使用过旧版本的请修改Leancloud shuoshuo class部分列名：https://artitalk.js.org/release.html
+  # 除appID和appKEY外均为选填项
+  artitalk:
+    # Set `plugins: ["artitalk"]` to enable in front-matter
+    # 配置项按照yml格式继续填写即可
+    appId: ogP8qj3veMh0LFpFWMPOyF0X-MdYXbMMI # your appID
+    appKey: nHXLd3N3Jgh460t2iRQKWAtr # your appKEY
+    # serverURL:  #leancloud绑定的api访问域名，使用国际版的话不需要填写
+    # lang: # 语言设置，zh为汉语，en为英语，es为西班牙语。默认为汉语
+    # pageSize: #每页说说的显示数量
+    # shuoPla: #在编辑说说的输入框中的占位符
+    # avatarPla: #自定义头像url的输入框的占位符
+    # motion: #加载动画的开关，1为开，0为关，默认为开
+    # bgImg: #说说输入框背景图片url
+    # color1: #说说背景颜色1&按钮颜色1
+    # color2: #说说背景颜色2&按钮颜色2
+    # color3: #说说字体颜色
+    # cssUrl: #自定义css接口
+
+  # Memos https://usememos.com
+  memos:
+    # Set `plugins: ["memos"]` to enable in front-matter
+    url: 'https://blog.qiufeng.xyz/' # 替换成自己的域名，也可以用杜老师的平台托管
+    limit: '10' # 展示数量限制
+    id: '1' # 替换成自己的用户的ID
+############################### Plugins ############################### > end

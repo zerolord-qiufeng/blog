@@ -1,0 +1,4 @@
+[submodule "themes/volantis"]
+	path = themes/volantis
+	url = git@github.com:zerolord-qiufeng/hexo-theme-volantis.git
+	branch = 6.0
