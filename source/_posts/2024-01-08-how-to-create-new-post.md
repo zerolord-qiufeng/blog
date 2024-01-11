@@ -1,5 +1,5 @@
 ---
-title: how-to-create-new-post
+title: how to create new post
 layout: post
 author: qiufeng
 tags: qiufeng
