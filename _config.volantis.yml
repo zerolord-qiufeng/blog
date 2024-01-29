@@ -167,3 +167,19 @@ plugins:
     limit: '10' # 展示数量限制
     id: '1' # 替换成自己的用户的ID
 ############################### Plugins ############################### > end
+
+############################### Comments ############################### > start
+comments:
+  title: <i class='fas fa-comments'></i> 评论
+  subtitle:
+  service: beaudar
+  beaudar:
+    repo: zerolord-qiufeng/blog
+    issue-term: https://blog.qiufeng.xyz/comments
+    branch: main
+    order: desc
+    theme:
+      light: github-light
+      dark: github-dark
+    label: ✨💬✨
+############################### Comments ############################### > end
