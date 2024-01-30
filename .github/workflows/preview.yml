@@ -1,0 +1,110 @@
+name: Deploy PR previews
+
+on:
+  pull_request:
+    branches:
+      - main
+    types:
+      - opened
+      - synchronize
+      - reopened
+      - closed
+
+concurrency: preview-${{ github.head_ref }}
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  pre-commit:
+    if: github.event_name == 'pull_request' && github.event.action != 'closed'
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - uses: actions/setup-python@v5
+      with:
+        python-version: '3.12'
+    - uses: pre-commit/action@v3.0.0
+
+  lints:
+    needs:
+    - pre-commit
+    runs-on: ubuntu-latest
+    steps:
+    - run: echo "all lints pass"
+
+  build-preview:
+    needs: lints
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          # If your repository depends on submodule, please see: https://github.com/actions/checkout
+          submodules: recursive
+      - name: Use Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '21'
+      - name: Cache NPM dependencies
+        uses: actions/cache@v4
+        with:
+          path: node_modules
+          key: ${{ runner.OS }}-npm-cache
+          restore-keys: |
+            ${{ runner.OS }}-npm-cache
+      - name: Install Dependencies
+        run: npm install
+      - name: Build
+        run: npm run build
+      - name: Upload Pages artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: "site"
+          path: ./public
+
+  deploy-preview:
+    needs: build-preview
+    permissions:
+      pull-requests: write
+    environment:
+      name: pull-request-preview
+      url: ${{ steps.deployment.outputs.deployment-url }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download the preview page
+        uses: actions/download-artifact@v4
+        with:
+          name: "site"
+          path: ./public
+      - uses: rossjrw/pr-preview-action@v1
+        id: deployment
+        with:
+          source-dir: ./public
+          preview-branch: previews
+          umbrella-dir: pr-previews
+          deploy-repository: zerolord-qiufeng/blog-previews
+          token: ${{ secrets.BLOG_PREVIEW_TOKEN }}
+          action: auto
+
+  # remove the preview page when the PR got closed
+  remove-preview:
+    if: github.event_name == 'pull_request' && github.event.action == 'closed'
+    runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write
+    steps:
+      # checkout required for pr-preview-action to succeed,
+      # while the content will not be used
+      - name: Checkout
+        uses: actions/checkout@v4
+      - uses: rossjrw/pr-preview-action@v1
+        id: deployment
+        with:
+          preview-branch: previews
+          umbrella-dir: pr-previews
+          deploy-repository: zerolord-qiufeng/blog-preview
+          token: ${{ secrets.BLOG_PREVIEW_TOKEN }}
+          action: auto
