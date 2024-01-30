@@ -99,16 +99,6 @@ ignore:
 ## Themes: https://hexo.io/themes/
 theme: volantis
 
-# Deployment
-## Docs: https://hexo.io/docs/one-command-deployment
-deploy:
-  type: git
-  repo: git@github.com:zerolord-qiufeng/blog.git
-  branch: gh-pages
-  # token: ''
-  name: zerolord-qiufeng
-  email: zerolord-qiufeng@qiufeng.xyz
-
 feed:
   enable: true
   # Generate both atom and rss2 feeds
